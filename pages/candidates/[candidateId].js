@@ -14,8 +14,27 @@ const CandidateDetails = () => {
   ]);
 
   return (
-    <div className="w-full h-5/6 p-2">
-      <div className="text-center m-2 mb-4">
+    <div className="w-full h-5/6 p-2 relative flex flex-col justify-center">
+      <button
+        onClick={() => router.push("/")}
+        className="w-14 h-10 flex justify-center items-center top-5 absolute"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-7 h-7"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+          />
+        </svg>
+      </button>
+      <div className="text-center m-2 mb-4 mt-6">
         <h1 className="font-poppins font-medium text-2xl">Candidate Details</h1>
       </div>
       <div className="flex flex-wrap justify-center gap-4 items-start w-full h-4/6">
