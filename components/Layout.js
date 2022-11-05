@@ -5,16 +5,19 @@ import UserForm from "./UserForm";
 const Layout = ({ children }) => {
   const [userDetails, setUserDetails] = useState({ name: "", address: "" });
 
-  console.log(userDetails);
   return (
-    <main className="flex flex-col justify-center items-center h-screen">
+    <main className="flex flex-col justify-start items-center h-screen">
       <UserContext.Provider
         value={{
           userDetails: userDetails,
           setUserDetails: setUserDetails,
         }}
       >
-        {userDetails.name !== "" ? children : <UserForm />}
+        {userDetails.name !== "" && userDetails.address !== "" ? (
+          children
+        ) : (
+          <UserForm />
+        )}
       </UserContext.Provider>
     </main>
   );
