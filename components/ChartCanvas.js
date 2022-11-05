@@ -6,6 +6,7 @@ const ChartCanvas = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const options = {
     plugins: {
+      responsive: true,
       legend: {
         labels: {
           font: {
@@ -54,7 +55,7 @@ const ChartCanvas = () => {
       },
     ],
   };
-  return <Doughnut width={"25%"} data={data} options={options} />;
+  return <Doughnut height={"25%"} data={data} options={options} />;
 };
 
 export default ChartCanvas;
