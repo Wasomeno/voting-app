@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FilteredCandidates {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  address   String   @db.VarChar(255)
+  candidate String   @db.VarChar(255)
+  district  Int      @db.Integer
+  addedAt   DateTime @default(now())
+}
+
+model FinalCandidates {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  address   String   @db.VarChar(255)
+  district  Int      @db.Integer
+  votes     Int      @db.Integer
+}
+
+

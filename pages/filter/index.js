@@ -1,23 +1,37 @@
+import { useQuery } from "@tanstack/react-query";
+import { delay, motion } from "framer-motion";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../context/userContext";
 
 const Filter = () => {
   const districts = [17, 18, 19, 20, 22, 24];
-
   const userDetails = useContext(UserContext).userDetails;
   const router = useRouter();
+
   return (
-    <div className="w-full h-full flex flex-col items-center p-2">
-      <div className="w-full text-start my-4">
-        <p className="font-poppins font-medium text-sm ml-4 underline">
-          {userDetails.name}
+    <div className="w-full h-full flex flex-col items-center p-2 overflow-y-scroll">
+      <div className="w-5/6 text-left m-2 mb-4">
+        <p className="font-poppins font-medium text-sm">
+          Hello {userDetails.name},
         </p>
       </div>
       <div className="text-center m-2">
-        <h1 className="font-poppins font-medium text-xl m-2">Districts</h1>
+        <h1 className="font-poppins font-medium text-xl">Filter Kandidat</h1>
       </div>
-      <div className="w-full h-5/6 flex flex-col items-center gap-3">
+
+      <div className="w-5/6 text-left m-2 mb-3 shadow-md">
+        <h3 className="font-poppins font-medium my-2">Panduan</h3>
+        <p className="font-poppins font-medium text-sm p-3 bg-blue-200 rounded-lg">
+          Silahkan pilih menu sesuai dengan asal RT anda, kemudian silahkan
+          masukkan nama kandidat yang akan diajukan.
+        </p>
+      </div>
+
+      <div className="w-5/6 text-start">
+        <h3 className="p-2 font-poppins font-medium my-2">List RT</h3>
+      </div>
+      <div className="w-full flex flex-col items-center p-2 gap-3 max-h-64 overflow-y-scroll">
         {districts.map((district) => (
           <div
             key={district}
@@ -34,7 +48,7 @@ const Filter = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"

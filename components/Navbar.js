@@ -1,12 +1,29 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const FilterNavbar = () => {
   const router = useRouter();
+  const basePath = router.pathname.split("/");
+  const [dimension, setDimension] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    window.addEventListener("resize", () =>
+      setDimension({ width: window.innerWidth, height: window.innerHeight })
+    );
+    return () =>
+      window.removeEventListener("resize", () =>
+        setDimension({ width: window.innerWidth, height: window.innerHeight })
+      );
+  }, []);
+
+  if (dimension.height < 500) return;
   return (
-    <div className="w-full flex justify-evenly items-center p-2 fixed bottom-0 bg-slate-200 rounded-br-xl rounded-lr-xl">
+    <div className="w-full flex justify-evenly items-center fixed bottom-0 bg-slate-200 rounded-br-xl rounded-lr-xl">
       <div
-        className="flex flex-col justify-center items-center"
+        className={"flex w-3/6 flex-col justify-center items-center p-2"}
         onClick={() => router.push("/filter")}
       >
         <svg
@@ -14,8 +31,8 @@ export const FilterNavbar = () => {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
+          stroke={basePath.length < 3 ? "#141E61" : "#000"}
+          className={"w-6 h-6 transition duration-300 ease-in-out"}
         >
           <path
             strokeLinecap="round"
@@ -26,7 +43,8 @@ export const FilterNavbar = () => {
         <p className="text-xs font-poppins">Home</p>
       </div>
       <div
-        className="flex flex-col justify-center items-center"
+        className="flex w-3/6 flex-col justify-center items-center p-2 transition duration-200
+        "
         onClick={() => router.push("/filter/results")}
       >
         <svg
@@ -34,8 +52,8 @@ export const FilterNavbar = () => {
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
+          stroke={basePath.length < 3 ? "#141E61" : "#000"}
+          className={"w-6 h-6 transition duration-300 ease-in-out"}
         >
           <path
             strokeLinecap="round"

@@ -1,7 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { FilterNavbar } from "./Navbar";
+import Toast from "./Toast";
 import UserForm from "./UserForm";
 
 const Layout = ({ children }) => {
@@ -26,6 +29,7 @@ const Layout = ({ children }) => {
           <UserForm />
         )}
       </UserContext.Provider>
+      <Toast />
     </main>
   );
 };

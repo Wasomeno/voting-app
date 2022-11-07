@@ -19,7 +19,7 @@ const UserForm = () => {
       <div className="flex flex-col items-center h-96 w-5/6 p-3 bg-slate-100 rounded-xl shadow-slate-300 shadow-md min-w-fit sm:w-3/6 lg:w-3/6 md:w-3/6 xl:w-3/6">
         <div className="text-center m-2 p-2">
           <h1 className="font-poppins font-medium text-xl md:text-2xl">
-            Form Voting
+            Form Pengguna
           </h1>
         </div>
         <form

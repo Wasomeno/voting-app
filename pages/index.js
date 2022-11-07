@@ -1,20 +1,20 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ChartCanvas from "../components/ChartCanvas";
 import { UserContext } from "../context/userContext";
+import { fetchCandidates } from "../fetchers/fetchers";
+import { useQuery } from "@tanstack/react-query";
+import { useToast } from "../stores/stores";
 
 export default function Home() {
-  const userDetails = useContext(UserContext).userDetails;
-  const [candidates, setCandidates] = useState([
-    "Supardi",
-    "Suparman",
-    "Sumanto",
-    "Budi",
-    "Popo",
-    "Parno",
-  ]);
-
   const router = useRouter();
+  const userDetails = useContext(UserContext).userDetails;
+  const candidates = useQuery(["candidates"], () => fetchCandidates());
+  const [toastSuccess, toastError] = useToast();
+
+  useEffect(() => {
+    console.log(candidates.data);
+  }, [candidates.isLoading]);
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
