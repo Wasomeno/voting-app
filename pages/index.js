@@ -10,13 +10,15 @@ export default function Home() {
   const router = useRouter();
   const userDetails = useContext(UserContext).userDetails;
   const candidates = useQuery(["candidates"], () => fetchCandidates());
+  const times = Date.now() / 1000;
   const [toastSuccess, toastError] = useToast();
 
   useEffect(() => {
-    console.log(candidates.data);
+    console.log(times);
+    1669367118;
   }, [candidates.isLoading]);
 
-  return (
+  return times > 1669367118 ? (
     <div className="h-full w-full flex flex-col justify-center items-center">
       <div className="w-full text-start mb-2">
         <p className="font-poppins font-medium text-sm ml-4 underline">
@@ -73,6 +75,33 @@ export default function Home() {
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="w-full h-full flex flex-col justify-center items-center">
+      <h1 className="font-poppins font-medium p-2 text-lg">
+        Sesi Voting Belum Dimulai
+      </h1>
+
+      <button
+        className="p-3 flex justify-evenly items-center bg-black rounded-lg w-3/6"
+        onClick={() => router.push("/filter")}
+      >
+        <p className="font-poppins text-sm text-white ">Filter Kandidat</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="white"
+          className="w-5 h-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
